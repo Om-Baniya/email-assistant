@@ -20,6 +20,6 @@ public class EmailGeneratorController {
     @PostMapping(ApiConstant.GENERATE_EMAIL)
     public ResponseEntity<String> generateEmail(@RequestBody EmailRequest emailRequest) {
        String response = emailGeneratorService.generateEmail(emailRequest);
-        return ResponseEntity.ok("Email generated");
+        return ResponseEntity.ok(response);
     }
 }
