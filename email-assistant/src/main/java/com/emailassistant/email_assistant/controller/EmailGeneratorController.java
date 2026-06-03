@@ -4,15 +4,13 @@ import com.emailassistant.email_assistant.model.request.EmailRequest;
 import com.emailassistant.email_assistant.service.EmailGeneratorService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.emailassistant.email_assistant.common.ApiConstant;
 
 @RestController
 @RequestMapping(ApiConstant.BASE_API)
 @AllArgsConstructor
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class EmailGeneratorController {
 
     private final EmailGeneratorService emailGeneratorService;
@@ -20,6 +18,6 @@ public class EmailGeneratorController {
     @PostMapping(ApiConstant.GENERATE_EMAIL)
     public ResponseEntity<String> generateEmail(@RequestBody EmailRequest emailRequest) {
        String response = emailGeneratorService.generateEmail(emailRequest);
-        return ResponseEntity.ok("Email generated");
+        return ResponseEntity.ok(response);
     }
 }
