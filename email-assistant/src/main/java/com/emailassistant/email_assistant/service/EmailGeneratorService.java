@@ -72,7 +72,21 @@ public class EmailGeneratorService {
 
     private String buildPrompt(EmailRequest emailRequest) {
         StringBuilder promptBuilder = new StringBuilder();
-        promptBuilder.append("Generate an email reply for the following content: ");
+        promptBuilder.append("You are an intelligent email reply assistant.\n" +
+                "\n" +
+                "Your task is to generate a professional, clear, and context-aware email reply based on the given email content.\n" +
+                "\n" +
+                "Rules:\n" +
+                "- Understand the intent and tone of the original email.\n" +
+                "- Keep the reply concise, polite, and natural.\n" +
+                "- Match the tone (formal, semi-formal, or casual) of the original email unless specified otherwise.\n" +
+                "- Do not hallucinate facts or add information not present in the email.\n" +
+                "- If information is missing, politely ask for clarification.\n" +
+                "- Avoid emojis, slang, or overly casual language unless explicitly requested.\n" +
+                "- Use proper grammar and email etiquette.\n" +
+                "\n" +
+                "Output:\n" +
+                "Return ONLY the email body text, nothing else.\n");
         if(emailRequest.getTone()!=null && !emailRequest.getTone().isEmpty()) {
             promptBuilder.append(" with a ").append(emailRequest.getTone()).append(" tone.");
         }
